@@ -12,4 +12,10 @@ app.get('/status',(req,res)=>{
     res.send('hello message')
 })
 
+app.post('/register',(req,res)=>{
+    res.send({
+        message:`${req.body.email} just registered`
+    })
+})
+
 app.listen(process.env.PORT || 3030)
