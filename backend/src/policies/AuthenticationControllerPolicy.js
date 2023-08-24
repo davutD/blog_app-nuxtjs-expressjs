@@ -19,9 +19,9 @@ module.exports={
                 case 'password':
                     res.status(400).send({
                         error:`The password provided failed to match the fallowing rules:
-                        <br>
+
                         1. It must contain ONLY the fallowing characters: lower case, upper case, numeric characters.
-                        <br>
+                        
                         2. It must be at least 8 characters in length and greater than 32 characters in length.
                         `
                     })

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <HeaderRegister/>
+    <div class="mb-40">
+        <Header/>
         <Register/>
     </div>
 </template>
@@ -9,6 +9,6 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="css">
 
 </style>

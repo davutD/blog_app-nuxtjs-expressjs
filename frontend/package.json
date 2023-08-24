@@ -9,7 +9,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-module": "^4.1.0",
     "@types/node": "^18.17.3",
     "autoprefixer": "^10.4.15",
     "nuxt": "^3.6.5",
@@ -565,6 +567,8 @@
     "vue-bundle-renderer": "^1.0.3",
     "vue-devtools-stub": "^0.1.0",
     "vue-router": "^4.2.4",
+    "vuex": "^4.1.0",
+    "vuex-router-sync": "^5.0.0",
     "wait-on": "^7.0.1",
     "web-streams-polyfill": "^3.2.1",
     "webidl-conversions": "^3.0.1",
