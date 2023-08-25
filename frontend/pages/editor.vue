@@ -1,7 +1,6 @@
 <template>
     <div>
-        <Header/>
-        <Posts/>
+        <Editor/>
     </div>
 </template>
 
@@ -9,6 +8,6 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>

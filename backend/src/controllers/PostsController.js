@@ -6,7 +6,6 @@ module.exports={
             const posts= await Post.findAll({
                 limit:10
             })
-            console.log(posts)
             res.send(posts)
         }catch(err){
             res.status(500).send({
