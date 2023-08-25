@@ -37,25 +37,29 @@
         </v-card-actions>
         </v-card>
         <v-alert class="mt-10 w-1/3 m-auto" v-if="err" :text="err" type="warning" variant="tonal"></v-alert>
+        
     </div>
 </template>
 
 <script setup>
 import AuthenticationService from '../services/AuthenticationService'
+import { useUserStore } from '../store/UserStore'
 
 const email=ref('')
 const password1=ref('')
 const password2=ref('')
 const err=ref('')
 
+const userStore=useUserStore()
+
 const login=async()=>{
     try{
         const response = await AuthenticationService.login({
-        email:email.value,
-        password:password1.value
+            email:email.value,
+            password:password1.value
         })
-        this.$store.dispatch('setToken',response.data.token)
-        this.$store.dispatch('setUser',response.data.user)
+        userStore.setToken(response.data.token)
+        userStore.setUser(response.data.user)
     }catch(error){
         err.value=error.response.data.error
     }

@@ -59,13 +59,14 @@
         <v-spacer></v-spacer>
 
         <v-btn @click="register" class="w-full" color="success">
-            Register
-
+                Register
             <v-icon icon="mdi-chevron-right" end></v-icon>
         </v-btn>
         </v-card-actions>
         </v-card>
         <v-alert class="mt-10 w-1/3 m-auto" density="compact" v-if="err" :text="err" type="warning" variant="tonal"></v-alert>
+        <v-alert class="mt-10 w-1/3 m-auto" density="compact" v-if="registerSuccess" text="You successfuly registered!" type="success" variant="tonal"></v-alert>
+        
     </div>
 </template>
 
@@ -75,13 +76,19 @@ import AuthenticationService from '../services/AuthenticationService'
 const email=ref('')
 const password1=ref('')
 const err=ref('')
+const router=useRouter()
+const registerSuccess=ref(false)
 
 const register=async()=>{
     try{
         await AuthenticationService.register({
-        email:email.value,
-        password:password1.value
+            email:email.value,
+            password:password1.value
         })
+        registerSuccess.value=true
+        setTimeout(()=>{
+            router.push('/login')
+        },2000)
     }catch(error){
         err.value=error.response.data.error
     }
