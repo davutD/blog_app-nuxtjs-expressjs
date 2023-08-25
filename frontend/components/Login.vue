@@ -48,6 +48,7 @@ import { useUserStore } from '../store/UserStore'
 const email=ref('')
 const password1=ref('')
 const password2=ref('')
+const router=useRouter()
 const err=ref('')
 
 const userStore=useUserStore()
@@ -60,6 +61,7 @@ const login=async()=>{
         })
         userStore.setToken(response.data.token)
         userStore.setUser(response.data.user)
+        router.push('/posts')
     }catch(error){
         err.value=error.response.data.error
     }
