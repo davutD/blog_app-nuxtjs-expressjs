@@ -2,6 +2,7 @@
     <v-toolbar color="blue" :elevation="8">
             <v-toolbar-items>
                 <NuxtLink class="h-full" to="/"><v-btn>Home</v-btn></NuxtLink>
+                <NuxtLink class="h-full" to="/editor"><v-btn>Editor</v-btn></NuxtLink>
                 <NuxtLink v-if="!userStore.isUserLoggedIn" class="h-full" to="/login"><v-btn>Login</v-btn></NuxtLink>
                 <NuxtLink v-if="!userStore.isUserLoggedIn" class="h-full" to="/register"><v-btn>Register</v-btn></NuxtLink>
                 <NuxtLink v-if="userStore.isUserLoggedIn" @click="logout" class="h-full" to="/"><v-btn>Log Out</v-btn></NuxtLink>

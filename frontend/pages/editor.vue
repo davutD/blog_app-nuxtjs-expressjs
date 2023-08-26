@@ -1,6 +1,9 @@
 <template>
     <div>
-        <Editor/>
+        <Header/>
+        <client-only placeholder="loading...">
+            <EditorQuill/>
+        </client-only>
     </div>
 </template>
 

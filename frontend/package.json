@@ -23,9 +23,7 @@
   "main": "index.js",
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
-    "@tiptap/pm": "^2.1.7",
-    "@tiptap/starter-kit": "^2.1.7",
-    "@tiptap/vue-3": "^2.1.7",
+    "@vueup/vue-quill": "^1.2.0",
     "abbrev": "^1.1.1",
     "acorn": "^8.10.0",
     "agent-base": "^7.1.0",

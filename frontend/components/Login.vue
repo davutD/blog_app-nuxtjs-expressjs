@@ -61,7 +61,7 @@ const login=async()=>{
         })
         userStore.setToken(response.data.token)
         userStore.setUser(response.data.user)
-        router.push('/posts')
+        router.push('/')
     }catch(error){
         err.value=error.response.data.error
     }
