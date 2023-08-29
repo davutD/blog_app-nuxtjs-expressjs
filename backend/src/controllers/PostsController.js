@@ -18,6 +18,7 @@ module.exports={
             const post= await Post.create(req.body)
             res.send(post.toJSON())
         }catch(err){
+            console.log(err)
             res.status(500).send({
                 error:'An error has occured trying to create the post.'
             })

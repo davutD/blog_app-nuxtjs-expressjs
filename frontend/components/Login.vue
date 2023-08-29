@@ -1,44 +1,65 @@
 <template>
     <div>
-        <v-card
-        class="mx-auto text-center mt-10"
-        max-width="344"
-        title="Login Page"
+        <div class="mt-12">
+            <v-card
+            class="mx-auto pa-12 pb-8"
+            elevation="8"
+            max-width="448"
+            rounded="lg"
             >
-        <v-container>
-        <v-text-field
-            v-model="email"
-            color="primary"
-            label="Email"
-            variant="underlined"
-            placeholder="Enter your email"
-        ></v-text-field>
+            <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
-        <v-text-field
-            type="password"
-            v-model="password1"
-            color="primary"
-            label="Password"
-            placeholder="Enter your password"
-            variant="underlined"
-        ></v-text-field>
-        </v-container>
+            <v-text-field
+                density="compact"
+                placeholder="Email address"
+                prepend-inner-icon="mdi-email-outline"
+                variant="underlined"
+                v-model="email"
+                :rules="[() => !!email || 'This field is required']"
+                required
+            ></v-text-field>
 
-        <v-divider></v-divider>
+            <div
+                class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between"
+            >
+                Password
 
-        <v-card-actions>
-        <v-spacer></v-spacer>
+                <a
+                class="text-caption text-decoration-none text-amber"
+                href="#"
+                rel="noopener noreferrer"
+                target="_blank"
+                >
+                Forgot login password?</a
+                >
+            </div>
 
-        <v-btn @click="login" class="w-full" color="success">
-            Login
+            <v-text-field
+                :type="'password'"
+                density="compact"
+                placeholder="Enter your password"
+                prepend-inner-icon="mdi-lock-outline"
+                variant="underlined"
+                v-model="password"
+                :rules="[() => !!password || 'This field is required']"
+                required
+            ></v-text-field>
 
-            <v-icon icon="mdi-chevron-right" end></v-icon>
-        </v-btn>
-        </v-card-actions>
-        </v-card>
-        <v-alert class="mt-10 w-1/3 m-auto" v-if="err" :text="err" type="warning" variant="tonal"></v-alert>
-        
-    </div>
+            <v-btn @click="login" block class="mb-8" color="amber" size="large" variant="tonal">
+                Log In
+            </v-btn>
+
+            <v-card-text class="text-center">
+                <NuxtLink
+                class="text-amber text-decoration-none"
+                to="/register"
+                >
+                Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
+            </NuxtLink>
+            </v-card-text>
+            </v-card>
+        </div>
+  </div>
 </template>
 
 <script setup>
@@ -46,8 +67,7 @@ import AuthenticationService from '../services/AuthenticationService'
 import { useUserStore } from '../store/UserStore'
 
 const email=ref('')
-const password1=ref('')
-const password2=ref('')
+const password=ref('')
 const router=useRouter()
 const err=ref('')
 
@@ -57,7 +77,7 @@ const login=async()=>{
     try{
         const response = await AuthenticationService.login({
             email:email.value,
-            password:password1.value
+            password:password.value
         })
         userStore.setToken(response.data.token)
         userStore.setUser(response.data.user)

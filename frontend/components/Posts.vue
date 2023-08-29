@@ -1,26 +1,11 @@
 <template>
-    <div>
-        <h1 class="text-center m-auto mt-10 bg-orange-600">Here is posts page/main page</h1>
-        <div class="post-details flex flex-row justify-between">
-            <div>Post ID</div>
-            <div>Author Name</div>
-            <div>Author Pic</div>
-            <div>Post Title</div>
-            <div>Post Tag</div>
-            <div>Post Pic</div>
-            <div>Post Content</div>
-            <div>Creation Time</div>
-        </div>
-        <div v-for="post in posts" :key="post.id" class="post-details flex flex-row">
-            <div>{{ post.id }}</div>
-            <div>{{ post.author_name }}</div>
-            <div><img :src="post.author_profile_url" alt=""></div>
-            <div>{{ post.title }}</div>
-            <div>{{ post.tag }}</div>
-            <div><img :src="post.image_url" alt=""></div>
-            <div>{{ post.content }}</div>
-            <div>{{ post.createdAt }}</div>
-        </div>
+    <div class="blog-page container mx-auto mb-16 pt-16 w-3/4">
+      <div class="all-posts mt-20 p-4 lg:px-0 lg:pt-6 grid md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <BlogCard v-for="post in posts" :key="post.id"/>
+      </div>
+      <button class="read-more" @click="loadMore">
+        <span>Read More</span>
+      </button>
     </div>
 </template>
 
@@ -37,7 +22,47 @@ onMounted(async ()=>{
 </script>
 
 <style lang="css">
-.post-details>div{
-    margin:1rem 1rem 1rem 1rem;
+.top-post {
+  grid-column: 1 / -1;
+}
+.top-post > .image{
+	border-top-right-radius: 0rem;
+	border-bottom-left-radius: 0.5rem;
+}
+.top-post .details{
+	margin: 2rem 2rem;
+}
+.top-post:hover{
+	transform: scale(1.05);
+}
+@screen md {
+	.top-post.blockcard {
+		flex-direction: row;
+	}
+	.top-post .image{
+		height: 100%;
+	}
+	.top-post .other-details {
+		margin-top: auto;
+	}
+}
+@media (max-width:640px){
+  .top-post > .image{
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0rem;
+  }
+  .top-post .details{
+    margin: 0rem 0.5rem;
+  }
+}
+.read-more {
+	display: block;
+	margin: 4rem auto 0;
+	border: 1px solid rgb(184, 182, 182);
+	border-radius: 0.5rem;
+	transition: transform 0.3s ease-in-out;
+}
+.read-more:hover{
+	transform: scale(1.15)
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <div class="mb-40">
-        <Header/>
-        <Register/>
-        <Footer/>
+    <div>
+        <div>
+
+        </div>
     </div>
 </template>
 

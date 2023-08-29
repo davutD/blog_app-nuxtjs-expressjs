@@ -1,80 +1,95 @@
 <template>
-    <div>
+        <div>
+        <div class="mt-12">
             <v-card
-        class="mx-auto text-center mt-10"
-        max-width="344"
-        title="Registration Page"
-    >
-        <v-container>
-        <v-text-field disabled
-            v-model="first"
-            color="primary"
-            label="First name"
-            variant="underlined"
-        ></v-text-field>
+            class="mx-auto pa-12 pb-8"
+            elevation="8"
+            max-width="448"
+            rounded="lg"
+            >
+            <div class="text-subtitle-1 text-medium-emphasis">Name Surname</div>
 
-        <v-text-field disabled
-            v-model="last"
-            color="primary"
-            label="Last name"
-            variant="underlined"
-        ></v-text-field>
+            <v-text-field
+                density="compact"
+                placeholder="Name Surname"
+                prepend-inner-icon="mdi-email-outline"
+                variant="underlined"
+                v-model="nameSurname"
+                :rules="[() => !!nameSurname || 'This field is required']"
+                required
+            ></v-text-field>
 
-        <v-text-field
-            v-model="email"
-            color="primary"
-            label="Email"
-            variant="underlined"
-            placeholder="Enter your email"
-        ></v-text-field>
 
-        <v-text-field
-            type="password"
-            v-model="password1"
-            color="primary"
-            label="Password"
-            placeholder="Enter your password"
-            variant="underlined"
-        ></v-text-field>
+            <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
-        <v-text-field
-            type="password"
-            v-model="password2"
-            color="primary"
-            label="Password"
-            placeholder="Repeat your password"
-            variant="underlined"
-        ></v-text-field>
+            <v-text-field
+                density="compact"
+                placeholder="Email address"
+                prepend-inner-icon="mdi-email-outline"
+                variant="underlined"
+                v-model="email"
+                :rules="[() => !!email || 'This field is required']"
+                required
+            ></v-text-field>
 
-        <v-checkbox disabled
-            v-model="terms"
-            color="secondary"
-            label="I agree to site terms and conditions"
-        ></v-checkbox>
-        </v-container>
+            <div
+                class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between"
+            >
+                Password
+            </div>
+            
 
-        <v-divider></v-divider>
+            <v-text-field
+                :type="'password'"
+                density="compact"
+                placeholder="Enter your password"
+                prepend-inner-icon="mdi-lock-outline"
+                variant="underlined"
+                v-model="password1"
+                :rules="[() => !!password1 || 'This field is required']"
+                required
+            ></v-text-field>
 
-        <v-card-actions>
-        <v-spacer></v-spacer>
+            <div
+                class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between"
+            >
+                Password
+            </div>
 
-        <v-btn @click="register" class="w-full" color="success">
+            <v-text-field
+                :type="'password'"
+                density="compact"
+                placeholder="Enter your password again"
+                prepend-inner-icon="mdi-lock-outline"
+                variant="underlined"
+                v-model="password2"
+                
+            ></v-text-field>
+
+            <v-btn @click="register" block class="mb-8" color="amber" size="large" variant="tonal">
                 Register
-            <v-icon icon="mdi-chevron-right" end></v-icon>
-        </v-btn>
-        </v-card-actions>
-        </v-card>
-        <v-alert class="mt-10 w-1/3 m-auto" density="compact" v-if="err" :text="err" type="warning" variant="tonal"></v-alert>
-        <v-alert class="mt-10 w-1/3 m-auto" density="compact" v-if="registerSuccess" text="You successfuly registered!" type="success" variant="tonal"></v-alert>
-        
-    </div>
+            </v-btn>
+
+            <v-card-text class="text-center">
+                <NuxtLink
+                class="text-amber text-decoration-none"
+                to="/login"
+                >
+                Login now <v-icon icon="mdi-chevron-right"></v-icon>
+            </NuxtLink>
+            </v-card-text>
+            </v-card>
+        </div>
+  </div>
 </template>
 
 <script setup>
 import AuthenticationService from '../services/AuthenticationService'
 
+const nameSurname=ref('')
 const email=ref('')
 const password1=ref('')
+const password2=ref('')
 const err=ref('')
 const router=useRouter()
 const registerSuccess=ref(false)
@@ -83,7 +98,8 @@ const register=async()=>{
     try{
         await AuthenticationService.register({
             email:email.value,
-            password:password1.value
+            password:password1.value,
+            name:nameSurname.value
         })
         registerSuccess.value=true
         setTimeout(()=>{
