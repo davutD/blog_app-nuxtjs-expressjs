@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header/>
-        <client-only placeholder="loading...">
+        <client-only>
             <EditorQuill/>
         </client-only>
     </div>

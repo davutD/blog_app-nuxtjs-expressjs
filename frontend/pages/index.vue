@@ -1,8 +1,7 @@
 <template>
-    <div>
-      <Header/>
+    <div class="flex flex-col">
+      <Header class="fixed"/>
+      <SearchBlog/>
       <Posts/>
-      <Footer/>
     </div>
   </template>
-  

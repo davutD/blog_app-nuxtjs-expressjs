@@ -1,7 +1,7 @@
 <template>
-    <div class="blog-page container mx-auto mb-16 pt-16 w-3/4">
-      <div class="all-posts mt-20 p-4 lg:px-0 lg:pt-6 grid md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <BlogCard v-for="post in posts" :key="post.id"/>
+    <div class="blog-page container mx-auto mb-16 mt-5 pt-5 w-3/4">
+      <div class="all-posts p-4 lg:px-0 lg:pt-6 grid md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <BlogCard v-for="post in posts" :key="post.id" :post="post"/>
       </div>
       <button class="read-more" @click="loadMore">
         <span>Read More</span>
@@ -16,7 +16,6 @@ const posts=ref([])
 
 onMounted(async ()=>{
     posts.value = (await PostService.index()).data
-    console.log(posts)
 })
 
 </script>

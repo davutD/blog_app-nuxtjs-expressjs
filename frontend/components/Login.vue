@@ -24,14 +24,14 @@
             >
                 Password
 
-                <a
+                <!-- <a
                 class="text-caption text-decoration-none text-amber"
                 href="#"
                 rel="noopener noreferrer"
                 target="_blank"
                 >
                 Forgot login password?</a
-                >
+                > -->
             </div>
 
             <v-text-field
@@ -54,10 +54,15 @@
                 class="text-amber text-decoration-none"
                 to="/register"
                 >
-                Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
+                Register now <v-icon icon="mdi-chevron-right"></v-icon>
             </NuxtLink>
             </v-card-text>
             </v-card>
+
+            <div v-if="errClient||errServer" class="err-box flex flex-col w-1/2 m-auto mb-10 text-center mt-10 p-2 rounded-sm shadow-md">
+                <div v-if="errClient">{{ errClient }}</div>
+                <div v-else>{{ errServer }}</div>
+            </div>
         </div>
   </div>
 </template>
@@ -69,26 +74,35 @@ import { useUserStore } from '../store/UserStore'
 const email=ref('')
 const password=ref('')
 const router=useRouter()
-const err=ref('')
+const errServer=ref('')
+const errClient=ref('')
 
 const userStore=useUserStore()
 
 const login=async()=>{
     try{
-        const response = await AuthenticationService.login({
-            email:email.value,
-            password:password.value
-        })
-        userStore.setToken(response.data.token)
-        userStore.setUser(response.data.user)
-        router.push('/')
+       if(!email.value||!password.value){
+            errClient.value='Please fill all required fields!'
+       }else{
+            const response = await AuthenticationService.login({
+                email:email.value,
+                password:password.value
+            })
+            userStore.setToken(response.data.token)
+            userStore.setUser(response.data.user)
+            router.push('/')
+       }
     }catch(error){
-        err.value=error.response.data.error
+        errClient.value=null
+        errServer.value=error.response.data.error
     }
 }
 
 </script>
 
 <style lang="css">
-
+.err-box{
+    background-color: #fff7e1;
+    color: #ffc107;
+}
 </style>

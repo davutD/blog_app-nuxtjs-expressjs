@@ -1,8 +1,7 @@
 <template>
-    <div class="mb-40">
+    <div>
         <Header/>
         <Register/>
-        <Footer/>
     </div>
 </template>
 

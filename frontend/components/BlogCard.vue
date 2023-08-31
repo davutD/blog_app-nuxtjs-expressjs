@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink tag="div" class="shadow-2xl blockcard">
+    <NuxtLink tag="div" :to="`/posts/${post.id}`" class="shadow-2xl blockcard">
         <div class="image h-2/5 w-full">
             <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg">
         </div>

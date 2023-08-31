@@ -14,6 +14,9 @@ module.exports=(app)=>{
     app.get('/posts', 
     PostsController.index)
 
+    app.get('/posts/:postId',
+    PostsController.getPost)
+
     app.post('/posts', 
     PostsController.create)
     
