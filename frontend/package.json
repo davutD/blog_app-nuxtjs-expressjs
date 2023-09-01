@@ -524,6 +524,7 @@
     "to-buffer": "^1.1.1",
     "to-fast-properties": "^2.0.0",
     "to-regex-range": "^5.0.1",
+    "tocbot": "^4.21.1",
     "toidentifier": "^1.0.1",
     "totalist": "^3.0.1",
     "tr46": "^0.0.3",

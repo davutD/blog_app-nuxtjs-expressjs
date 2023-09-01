@@ -6,9 +6,8 @@
       <label class="mx-5 my-auto">Tag:</label>
       <input type="text" class="input-quill" v-model="tag" required placeholder="Tag">   
     </div>
-    <QuillEditor theme="snow" toolbar="full" placeholder="Write a story..." contentType="html" v-model:content="content"/>
+    <QuillEditor theme="snow" toolbar="full" contentType="html" v-model:content="content"/>
     <button @click="publish" class="border flex m-auto rounded-lg mt-5 pt-1">Publish</button>
-    <div v-html="content"></div>
   </div>
 </template>
 
@@ -53,6 +52,7 @@ const publish=async()=>{
 <style lang="css">
 .ql-editor{
   min-height: 10rem;
+  padding: 2rem;
 }
 .input-quill::placeholder{
   font-style: italic;
