@@ -1,20 +1,19 @@
 <template>
     <NuxtLink tag="div" :to="`/posts/${post.id}`" class="shadow-2xl blockcard">
         <div class="image h-2/5 w-full">
-            <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg">
+            <img :src="post.image_url">
         </div>
-        <div class="details border">
-            <div class="title border"><NuxtLink><span class="mb-3"></span></NuxtLink></div>
-            <div class="excerpt border"></div>
-            <!-- <div class="other-details">
-                <div class="w-16 h-16"><img class="rounded-full" src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-674010.jpg&fm=jpg" alt=""></div>
-                <div class="w-4/5 flex flex-col">
-                    <div class="h-1/2 text-xs pl-3 pt-4 font-bold"></div>
-                    <div class="h-1/2 flex flex-row">
-                        <div class="w-2/5 text-xs pl-3 pt-1 text-gray-600"></div>
-                    </div>
+        <div class="details">
+            <div class="tag my-1 mx-2">{{ post.tag }}</div>
+            <div class="title"><span class="mb-3">{{ post.title }}</span></div>
+            <div class="excerpt">{{ post.description }}</div>
+            <div class="other-details flex flex-row">
+                <div class="author-profile-url w-16"><img :src="post.author_profile_url"></div>
+                <div class="flex flex-col p-1 px-4 w-full">
+                    <div class="my-auto">{{ post.author_name }}</div>
+                    <div class="text-sm">{{ date }}</div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </NuxtLink>
 </template>
@@ -32,8 +31,8 @@ import timezone from 'dayjs/plugin/timezone'
     dayjs.extend(utc)
     dayjs.extend(timezone)
 
-    // const timeZone = dayjs.tz.guess()
-    // const date = dayjs(post.published_at).tz(timeZone).format('MMM DD,YYYY')
+    const timeZone = dayjs.tz.guess()
+    const date = dayjs(post.createdAt).tz(timeZone).format('MMM DD,YYYY')
 </script>
 
 <style lang="css">
@@ -66,7 +65,7 @@ import timezone from 'dayjs/plugin/timezone'
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
-.tag span{
+.tag{
     font-size: small;
     color: #8fc74a;
     margin-left: 0.3rem;
@@ -96,14 +95,12 @@ import timezone from 'dayjs/plugin/timezone'
     flex-direction: row;
     height: 30%;
 }
-.other-details div img{
+.author-profile-url img{
+    border-radius: 100%;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center; 
-}
-.bullet{
-    letter-spacing: 0.2rem;
 }
 /* .share-button{
     width: 2rem;

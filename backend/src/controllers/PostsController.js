@@ -4,7 +4,8 @@ module.exports={
     async index(req,res){
         try{
             const posts= await Post.findAll({
-                limit:10
+                limit:10,
+                order: [['id', 'DESC']],
             })
             res.send(posts)
         }catch(err){

@@ -102,7 +102,6 @@ const errServer=ref('')
 const errClient=ref('')
 const isRegistered=ref(false)
 const router=useRouter()
-const registerSuccess=ref(false)
 
 const register=async()=>{
     try{
@@ -117,7 +116,6 @@ const register=async()=>{
             password:password1.value,
             name:nameSurname.value
             })
-            registerSuccess.value=true
             setTimeout(()=>{
                 router.push('/login')
             },2000)

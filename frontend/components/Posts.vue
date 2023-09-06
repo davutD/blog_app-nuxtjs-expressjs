@@ -1,5 +1,5 @@
 <template>
-    <div class="blog-page container mx-auto mb-16 mt-5 pt-5 w-3/4">
+    <div class="blog-page container mx-auto mb-16 mt-32 pt-5 w-3/4">
       <div class="all-posts p-4 lg:px-0 lg:pt-6 grid md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <BlogCard v-for="post in posts" :key="post.id" :post="post"/>
       </div>
@@ -13,10 +13,22 @@
 import PostService from '../services/PostService'
 
 const posts=ref([])
+const limit = ref(6);
+const currentPage = ref(1);
 
 onMounted(async ()=>{
     posts.value = (await PostService.index()).data
 })
+
+// const loadMore = async () => {
+//   try {
+//     currentPage.value++;
+//     const newPageContent = (await PostService.index()).data
+//     posts.value = [...posts.value, ...newPageContent];
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
 
 </script>
 

@@ -1,20 +1,20 @@
 <template>
     <div class="flex flex-col">
-        <Header/>
-        <div class="flex flex-row h-auto w-full my-10 border border-red-400">
-            <div class="left-column border h-auto w-2/12">left column(fill blank)</div>
-            <div class="middle-column flex flex-col border h-auto w-7/12">
-                <div class="content-head border">
-                    <h1 class=" border text-center my-10 text-5xl">{{ post.title }}</h1>
-                    <div class="border w-11/12 h-3/5 m-auto">image here</div>
+        <Header class="fixed"/>
+        <div class="flex flex-row h-auto w-full my-24">
+            <div class="left-column h-auto w-2/12"></div>
+            <div class="middle-column flex flex-col h-auto w-7/12">
+                <div class="content-head">
+                    <h1 class="text-center my-10 text-5xl">{{ post.title }}</h1>
+                    <div class="photo-cover w-11/12 h-4/5 m-auto"><img :src="post.image_url" alt=""></div>
                 </div>
-                <div class="content-body border" v-html="post.content"></div>
+                <div class="content-body" v-html="post.content"></div>
             </div>
-            <div class="right-column border h-auto w-3/12">
-                <h1 ref="onThisPage" class="on-this-page sticky top-20 text-xl text-gray-700">On this page</h1>
+            <div class="right-column my-10 ml-10 h-auto w-3/12">
+                <!-- <h1 ref="onThisPage" class="on-this-page sticky top-20 text-xl text-gray-700">On this page</h1>
                 <div ref="tocHeaders" class="toc-container sticky top-28 hidden lg:block lg:-mt-2">
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
 
 <script setup>
 import PostService from "../../services/PostService"
-import tocbot from 'tocbot'
+// import tocbot from 'tocbot'
 
 const route=useRoute()
 const id=route.params.id
@@ -39,26 +39,33 @@ const findPost= async (id)=>{
         }}
     await findPost(id)
 
-onMounted(()=>{
-    toc.value= tocbot.init({
-            headingsOffset: 70,
-            scrollSmoothOffset: -70,
-  			// Where to render the table of contents.
-  			tocSelector: '.toc-container',
-  			// Where to grab the headings to build the table of contents.
-  			contentSelector: '.content-body',
-  			// Which headings to grab inside of the contentSelector element.
-  			headingSelector: 'h1, h2, h3',
-  			// For headings inside relative or absolute positioned containers within content.
-  			hasInnerContainers: true,
-			})
+// onMounted(()=>{
+//     toc.value= tocbot.init({
+//             headingsOffset: 70,
+//             scrollSmoothOffset: -70,
+//   			// Where to render the table of contents.
+//   			tocSelector: '.toc-container',
+//   			// Where to grab the headings to build the table of contents.
+//   			contentSelector: '.content-body',
+//   			// Which headings to grab inside of the contentSelector element.
+//   			headingSelector: 'h1, h2, h3',
+//   			// For headings inside relative or absolute positioned containers within content.
+//   			hasInnerContainers: true,
+// 			})
         
-        console.log(toc)
-})
+//         console.log(toc)
+// })
 
 </script>
 
 <style lang="css">
+.photo-cover img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; 
+    display: block;
+}
 .content-head{
     height: 30rem;
 }
