@@ -17,9 +17,6 @@
 <script setup>
 import { useUserStore } from '../store/UserStore'
 
-const userOptions=ref([
-        { title: 'Log Out' }
-      ])
 const userStore=useUserStore()
 const router=useRouter()
 

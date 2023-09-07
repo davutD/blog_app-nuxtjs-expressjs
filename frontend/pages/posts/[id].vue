@@ -2,15 +2,15 @@
     <div class="flex flex-col">
         <Header class="fixed"/>
         <div class="flex flex-row h-auto w-full my-24">
-            <div class="left-column h-auto w-2/12"></div>
-            <div class="middle-column flex flex-col h-auto w-7/12">
+            <div class="left-column xl:block hidden h-auto w-2/12"></div>
+            <div class="middle-column flex flex-col h-auto xl:w-7/12">
                 <div class="content-head">
                     <h1 class="text-center my-10 text-5xl">{{ post.title }}</h1>
                     <div class="photo-cover w-11/12 h-4/5 m-auto"><img :src="post.image_url" alt=""></div>
                 </div>
                 <div class="content-body" v-html="post.content"></div>
             </div>
-            <div class="right-column my-10 ml-10 h-auto w-3/12">
+            <div class="right-column border hidden my-10 ml-10 h-auto">
                 <!-- <h1 ref="onThisPage" class="on-this-page sticky top-20 text-xl text-gray-700">On this page</h1>
                 <div ref="tocHeaders" class="toc-container sticky top-28 hidden lg:block lg:-mt-2">
 
